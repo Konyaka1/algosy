@@ -14,6 +14,7 @@ class MyHashMap {
         int index = hash(key);
 
         Entry curr = table[index];
+        // int count = 1;
         while (curr != null) {
             if (curr.key == key) {
                 curr.value = value;
@@ -22,7 +23,9 @@ class MyHashMap {
             }
 
             index = nextIndex(index);
+            // index = nextIndexSq(index, count);
             curr = table[index];
+            // count++;
         }
 
         table[index] = new Entry(key, value);
@@ -47,13 +50,16 @@ class MyHashMap {
         int index = hash(key);
 
         Entry curr = table[index];
+        // int count = 1;
         while (curr != null) {
             if (curr.key == key && !curr.isDeleted) {
                 return index;
             }
 
             index = nextIndex(index);
+            // index = nextIndexSq(index, count);
             curr = table[index];
+            // count++;
         }
 
         return -1;
@@ -62,6 +68,10 @@ class MyHashMap {
     private int nextIndex(int index) {
         // linear step
         return (index + 1) % MAX_TABLE_SIZE;
+    }
+
+    private int nextIndexSq(int index, int count) {
+        return (index + count * count) % MAX_TABLE_SIZE;
     }
 
     private int hash(int key) {
