@@ -29,6 +29,38 @@ class Solution {
     }
 }
 ```
+Решение без set.
+```java
+class Solution {
+    public int[] findThePrefixCommonArray(int[] A, int[] B) {
+        // step 0.
+        int[] visited = new int[A.length];
+        // step 1.
+        int[] result = new int[A.length];
+        // step 2.
+
+        result[0] = A[0] == B[0] ? 1 : 0; 
+        visited[A[0] - 1]++; 
+        visited[B[0] - 1]++; 
+        // step 3.
+        for (int i = 1; i < A.length - 1; i++) {
+            // step 3.1.
+            if (A[i] == B[i]) {
+                result[i] = result[i - 1] + 1;
+            } else {
+
+                visited[A[i] - 1]++;
+                visited[B[i] - 1]++;
+                result[i] = result[i - 1] + (visited[A[i] - 1] == 2 ? 1 : 0) + (visited[B[i] - 1] == 2 ? 1 : 0);
+            }
+        }
+        // step 4.
+        result[A.length - 1] = A.length;
+        
+        return result;
+    }
+}
+```
 
 ### Time
 O(N) -- Потому что проходим каждый элемент
@@ -49,5 +81,3 @@ O(N) -- Потому что храним каждый элемент в set + р
 set-ах они не будут храниться.
 ### Note
 Джава не приводит boolean к int автоматически
-
-Много ошибок очень, занервничал из-за нехватки времени, хотя додумался до формулы, и комментами правильно решение написал.
