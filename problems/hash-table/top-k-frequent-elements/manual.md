@@ -1,40 +1,40 @@
 ### Solution
-
+Time: 20:31
 ```java
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-        Map<Integer, Integer> freqMap = new HashMap<>();
+
+        Map<Integer, Integer> freq = new HashMap<>();
 
         for (int num : nums) {
-            freqMap.merge(num, 1, Integer::sum);
+            freq.merge(num, 1, Integer::sum);
         }
+        List<Integer>[] reversedFreq = new List[nums.length];
 
-        List<List<Integer>> invertedFreq = new ArrayList<>(nums.length - 1);
+
+
         for (int i = 0; i < nums.length; i++) {
-            invertedFreq.add(new LinkedList<Integer>());
+            reversedFreq[i] = new LinkedList<>();
         }
 
-        for (Map.Entry<Integer, Integer> entry : freqMap.entrySet()) {
-            int num = entry.getKey();
-            int freq = entry.getValue();
 
-            List<Integer> numsWithFreq = invertedFreq.get(freq - 1);
-            numsWithFreq.add(num);
+        for (Map.Entry<Integer, Integer> entry : freq.entrySet()) {
+            Integer num = entry.getKey();
+            int count = entry.getValue();
+
+            reversedFreq[count - 1].add(num);
         }
 
-        List<Integer> result = new ArrayList<>(k);
+        List<Integer> result = new LinkedList<>();
 
-        for (int i = nums.length - 1; i >= 0; i--) {
-            List<Integer> numsWithFreq = invertedFreq.get(i);
-
-            result.addAll(numsWithFreq);
-            k = k - numsWithFreq.size();
-            if (k == 0) {
-                break;
-            }
+        for (int i = nums.length - 1; i >= 0 && k > 0; i--) {
+            List<Integer> topIElements = reversedFreq[i];
+            result.addAll(topIElements);
+            k = k - topIElements.size();
         }
 
         return result.stream().mapToInt(e -> e).toArray();
+
     }
 }
 ```

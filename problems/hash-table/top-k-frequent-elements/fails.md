@@ -126,3 +126,44 @@ class Solution {
     }
 }
 ```
+
+## 2nd attempt
+[SYNTAX] Пересечение в наименовании переменных. **freq** 
+```java
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+
+        Map<Integer, Integer> freq = new HashMap<>();
+
+        for (int num : nums) {
+            freq.merge(num, 1, Integer::sum);
+        }
+        List<Integer>[] reversedFreq = new List[nums.length];
+
+
+        
+        for (int i = 0; i < nums.length; i++) {
+            reversedFreq[i] = new LinkedList<>();
+        }
+
+
+        for (Map.Entry<Integer, Integer> entry : freq.entrySet()) {
+            Integer num = freq.getKey(); 
+            int freq = freq.getValue(); 
+
+            reversedFreq[freq - 1].add(num); 
+        }
+
+        List<Integer> result = new LinkedList<>();
+
+        for (int i = nums.length - 1; i >= 0 && k > 0; i--) { 
+            List<Integer> topIElements = reversedFreq[i];
+            result.addAll(topIElements);
+            k = k - topIElements.size(); 
+        }
+
+        return result.stream().mapToInt(e -> e).toArray();
+
+    }
+}
+```
