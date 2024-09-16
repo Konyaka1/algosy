@@ -33,15 +33,6 @@ class Solution {
             for (UserData stat : statistic[i]) {
                 StepsAndDays old = map.get(stat.userId);
 
-                if (old == null) {
-                    continue;
-                }
-
-                if (old.day != i) {
-                    map.remove(stat.userId);
-                    continue;
-                }
-
                 old.steps = stat.steps + old.steps;
                 old.day++;
             }
