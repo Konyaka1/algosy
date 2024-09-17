@@ -40,34 +40,54 @@ class Solution {
     }
 
     private int getSquare(int i, int j) {
-        if (i < 3 && j < 3) {
-            return 0;
-        }
-        if (i < 3 && j < 6) {
-            return 3;
-        }
-        if (i < 3) {
-            return 6;
-        }
-        if (i < 6 && j < 3) {
-            return 1;
-        }
-        if (i < 6 && j < 6) {
-            return 4;
-        }
-        if (i < 6) {
-            return 7;
-        }
-        if (j < 3) {
-            return 2;
-        }
-        if (j < 6) {
-            return 5;
-        }
-        return 8;
-
+        return (i / 3) * 3 + (j / 3);
     }
 }
+```
+Оптмизированное решение на битовых операциях.
+```c++
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        __int128 rows = 0;
+        __int128 columns = 0;
+        __int128 boxes = 0;
+ 
+        __int128 bit = 1;
+ 
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == '.') continue;
+ 
+                int number = board[i][j] - '1';
+ 
+                __int128 rowMask = bit << (i * 9 + number);
+                if (rows & rowMask) {
+                    return false;
+                } else {
+                    rows = rows | rowMask;
+                }
+ 
+                __int128 columnMask = bit << (j * 9 + number);
+                if (columns & columnMask) {
+                    return false;
+                } else {
+                    columns = columns | columnMask;
+                }
+ 
+                int boxId = (i / 3) * 3 + (j / 3);
+                __int128 boxMask = bit << (number + (boxId * 9));
+                if (boxes & boxMask) {
+                    return false;
+                } else {
+                    boxes = boxes | boxMask;
+                }
+            }
+        }
+ 
+        return true;
+    }
+};
 ```
 
 ### Time
