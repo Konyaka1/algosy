@@ -1,5 +1,5 @@
 ### Solution
-TIME: 23:59.
+TIME: 23:59. NOT OPTIMAL
 ```java
 class Solution {
     public int pivotIndex(int[] nums) {
