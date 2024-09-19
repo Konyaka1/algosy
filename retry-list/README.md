@@ -5,7 +5,7 @@
 | top-k-frequent-elements                                   | 10.09.2024 | -               | 2           | [1] Syntax and logic. [2]. SYNTAX. [3] Retried first try | Finally retried with no issues               |
 | find-the-prefix-common-array-of-two-arrays                | 10.09.2024 | 22.09.2024      | 1           | [1] Syntax and logic and time. [2] Good                  | Solved without set using array. Good, 1 try. |
 | h-index                                                   | 11.09.2024 | 22.09.2024      | 1           | [2] Solved.                                              | waits 2nd retry. Good.                       |
-| find-all-anagrams-in-a-string                             | 11.09.2024 | 19.09.2024      | 0           | Syntax and logic                                         | Solve the problem 1st try                    |
+| find-all-anagrams-in-a-string                             | 11.09.2024 | 30.09.2024      | 1           | Syntax and logic. Successfully retried 24:16             | One more retry to make it faster             |
 | valid-sudoku                                              | 11.09.2024 | 27.09.2024      | 1           | Solved by using __int128 in c++. Needs to закрепить      | Solve first try using c++                    |
 | find-pivot-index                                          | 17.09.2024 | 19.09.2024      | 0           | Solved with creating prefix array, but it's redundant    | Solve first try without prefix array         |
 | subarray-sum-equals-k                                     | 17.09.2024 | 20.09.2024      | 0           | Not solved at all.                                       | Solve.                                       |
