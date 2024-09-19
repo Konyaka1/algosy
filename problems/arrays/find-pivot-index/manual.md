@@ -1,38 +1,43 @@
 ### Solution
-TIME: 23:59. NOT OPTIMAL
+TIME: ~20min.
 ```java
 class Solution {
+    
     public int pivotIndex(int[] nums) {
-        int[] sums = new int[nums.length + 1];
-        for (int i = 1; i < nums.length + 1; i++) {
-            sums[i] = sums[i - 1] + nums[i - 1];
+        int leftSum = 0; 
+        int rightSum = 0; 
+
+        for (int i = 1; i < nums.length; i++) {
+            rightSum = rightSum + nums[i]; 
         }
 
-        for (int i = 0; i < nums.length; i++) {
-            int leftSum = sums[i];
-            int rightSum = sums[nums.length] - sums[i + 1];
-            if (leftSum == rightSum) {
-                return i;
+        for (int i = 1; i < nums.length; i++) {  
+            if (leftSum == rightSum) {  
+                return i - 1; // 3
             }
+
+            leftSum = leftSum + nums[i - 1];  
+            rightSum = rightSum - nums[i];  
         }
 
-        return -1;
+        return leftSum == rightSum ? nums.length - 1 : -1;
     }
 }
 ```
 ### Time
 O(N) -- проходим через весь массив изначальный.
 ### Memory
-O(N) -- создается массив длины n + 1.
+O(1) -- храним только две переменных суммы, не зависит от длины массива.
 ### Explication
-Создаем префиксный массив и далее считаем наши суммы. `prArr[i] == x[0] + x[1] + x[i - 1]`.
-Нам надо найти такое i, чтобы выполнялось условие `SUM(0, i) SUM(i + 1, N)`, то есть
-`x[0] + x[1] + ... + x[i - 1] == x[i + 1] + x[i + 2] + ... + x[n - 1]`, n -- длина массива.
-
-то есть итерируем по префиксному массиву от 0 до n, пока не найдем такое i, чтобы выполнялось условие
-`prArr[i] == prArr[n] - prArr[i + 1]`, что можно записать как
-
-`x[0] + x[1] + ... + x[i - 1] == 
-(x[0] + x[1] + ... + x[n - 1]) - (x[0] + x[1] + ... + x[i]) ==
-x[i + 1] + x[i + 2] + ... + x[n - 1]
-`
+Префиксный массив излишний. Надо мониторить только две суммы, левую и правую.
+На каждой итерации мы добавляем число или отнимаем его.
+```
+i = 0; 0 == x[1] + x[2] + ... + x[n - 1];
+i = 1; 0 + x[0] == x[2] + x[3] + ... x[n - 1];
+...
+i = k; 0 + x[0] + ... + x[k - 1] == x[k + 1] + x[k + 2] + ... + x[n - 1];
+i = n - 1; 0 + x[0] + x[1] + ... x[n - 2] == 0
+```
+На каждой итерации к левой сумме добавляем `i - 1` элемент
+а от правой суммы отнимаем `i` элемент и сравниваем значения сумм. 
+Если равенство не было достигнуто -- возвращаем  -1.

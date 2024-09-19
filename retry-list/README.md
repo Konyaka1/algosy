@@ -7,7 +7,7 @@
 | h-index                                                   | 11.09.2024 | 22.09.2024      | 1           | [2] Solved.                                              | waits 2nd retry. Good.                       |
 | find-all-anagrams-in-a-string                             | 11.09.2024 | 30.09.2024      | 1           | Syntax and logic. Successfully retried 24:16             | One more retry to make it faster             |
 | valid-sudoku                                              | 11.09.2024 | 27.09.2024      | 1           | Solved by using __int128 in c++. Needs to закрепить      | Solve first try using c++                    |
-| find-pivot-index                                          | 17.09.2024 | 19.09.2024      | 0           | Solved with creating prefix array, but it's redundant    | Solve first try without prefix array         |
+| find-pivot-index                                          | 17.09.2024 | 30.09.2024      | 1           | Solved simplier. needs to закрепить                      | Solved without using prefix array            |
 | subarray-sum-equals-k                                     | 17.09.2024 | 20.09.2024      | 0           | Not solved at all.                                       | Solve.                                       |
 | rotate-array                                              | 18.09.2024 | 20.09.2024      | 0           | Solved with copying array                                | Solve by not coping an array                 |
 | minimum-difference-between-highest-and-lowest-of-k-scores | 18.09.2024 | 20.09.2024      | 0           | Solved with hints                                        | Solve with no hints                          |
