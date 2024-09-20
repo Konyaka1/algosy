@@ -44,3 +44,26 @@ sum(0, l1) == sum(0, l2) == sum(0, l3) == 5
 ```
 То есть отнимая `k` от `sum(0, r)` мы находим какую-то сумму `sum(0, l)`.
 Остается проверить, сколько у нас было сохранено уже предыдущих сумм с таким значением.
+
+Example:
+```
+we know that answer has x3 + x4, and x1 + x2 + x3 + x4. so their sum equals to k
+
+in map we have
+sum1 -> 2 ([x0], [x0 + x1 + x2])
+sum2 -> 1 ([x0 + x1])
+
+on the 4 iteration we kn0w sum of 0 to 4 we know x0 + x1 + x2 + x3 + x4.
+
+sum(0, r) - k == sum(0, l); using this formula
+
+x0 + x1 + x2 + x3 + x4 - k = x3 + x4 OR x1 + x2 + x3 + x4.
+
+we know k might be x1 + x2 + x3 + x4 OR x3 + x4
+
+so (x0 + x1 + x2 + x3 + x4) - (x1 + x2 + x3 + x4) == x0 == sum1 -- first value in map
+OR 
+so (x0 + x1 + x2 + x3 + x4) - (x3 + x4) == x0 + x1 + x2 == sum1 -- first value in map
+
+by calculating sum(0,4) we found two pairs so we add 2 to result count.
+```
