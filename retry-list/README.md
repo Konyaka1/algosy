@@ -11,3 +11,4 @@
 | subarray-sum-equals-k                                     | 17.09.2024 | 31.09.2024      | 1           | Solved 1 try.       needs to закрепить                   | Solved and good explanation is written.      |                                        |
 | rotate-array                                              | 18.09.2024 | 31.09.2024      | 1           | Solved with reversing. needs to закрепить                | Solved by not coping an array                |
 | minimum-difference-between-highest-and-lowest-of-k-scores | 18.09.2024 | 31.09.2024      | 1           | Solved. needs to закрепить                               | Solved.                                      |
+| one-edit-distance                                         | 21.09.2024 | 23.09.2024      | 0           | Solved from 3rd try, needs better checking of edge case  | Solve first try                              |
