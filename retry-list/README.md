@@ -9,5 +9,5 @@
 | valid-sudoku                                              | 11.09.2024 | 27.09.2024      | 1           | Solved by using __int128 in c++. Needs to закрепить      | Solve first try using c++                    |
 | find-pivot-index                                          | 17.09.2024 | 30.09.2024      | 1           | Solved simplier. needs to закрепить                      | Solved without using prefix array            |
 | subarray-sum-equals-k                                     | 17.09.2024 | 31.09.2024      | 1           | Solved 1 try.       needs to закрепить                   | Solved and good explanation is written.      |                                        |
-| rotate-array                                              | 18.09.2024 | 20.09.2024      | 0           | Solved with copying array                                | Solve by not coping an array                 |
-| minimum-difference-between-highest-and-lowest-of-k-scores | 18.09.2024 | 20.09.2024      | 0           | Solved with hints                                        | Solve with no hints                          |
+| rotate-array                                              | 18.09.2024 | 31.09.2024      | 1           | Solved with reversing. needs to закрепить                | Solved by not coping an array                |
+| minimum-difference-between-highest-and-lowest-of-k-scores | 18.09.2024 | 31.09.2024      | 1           | Solved. needs to закрепить                               | Solved.                                      |
