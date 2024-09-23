@@ -13,3 +13,4 @@
 | minimum-difference-between-highest-and-lowest-of-k-scores | 18.09.2024 | 31.09.2024      | 1           | Solved. needs to закрепить                               | Solved.                                 |
 | one-edit-distance                                         | 21.09.2024 | 23.09.2024      | 0           | Solved from 3rd try, needs better checking of edge case  | Solve first try.                        |
 | range-sum-query-2d-immutable                              | 22.09.2024 | 24.09.2024      | 0           | Too many tries                                           | Solved, but we need to do 1try.         |
+| valid-palindrome                                          | 23.09.2024 | 25.09.2024      | 0           | Too many tries, solution is not beautiful.               | Solve first try and simplify solution   |
