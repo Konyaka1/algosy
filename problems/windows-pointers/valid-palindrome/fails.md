@@ -81,3 +81,35 @@ class Solution {
     }
 }
 ```
+## Retry[1] fails
+Опять забыл про нижний регистр
+```java
+class Solution {
+    public boolean isPalindrome(String s) {
+        int l = 0;
+        int r = s.length() - 1;
+        
+        while (l < r) {
+            char leftSymbol = s.charAt(l);
+            if (!Character.isLetterOrDigit(leftSymbol)) {
+                l++;
+                continue;
+            }  
+            
+            char rightSymbol = s.charAt(r);
+            if (!Character.isLetterOrDigit(rightSymbol)) {
+                r--;
+                continue;
+            } 
+            
+            if (leftSymbol != rightSymbol) {
+                return false;
+            }
+            l++;
+            r--;
+        }
+        
+        return true;
+    }
+}
+```
