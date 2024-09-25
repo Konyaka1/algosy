@@ -2,42 +2,32 @@
 ```java
 class Solution {
     public boolean isPalindrome(String s) {
-        int left = 0;
-        int right = s.length() - 1;
+        int l = 0;
+        int r = s.length() - 1;
 
-        while (left < right) {
-            char leftSymbol = s.charAt(left);
-            while (!Character.isLetterOrDigit(leftSymbol)) {
-                left++;
-                if (left == s.length()) {
-                    return true;
-                }
-
-                leftSymbol = s.charAt(left);
+        while (l < r) {
+            char leftSymbol = s.charAt(l);
+            if (!Character.isLetterOrDigit(leftSymbol)) {
+                l++;
+                continue;
             }
 
-            char rightSymbol = s.charAt(right);
-            while (!Character.isLetterOrDigit(rightSymbol)) {
-                right--;
-                if (right == -1) {
-                    return true;
-                }
-
-                rightSymbol = s.charAt(right);
+            char rightSymbol = s.charAt(r);
+            if (!Character.isLetterOrDigit(rightSymbol)) {
+                r--;
+                continue;
             }
 
             if (Character.toLowerCase(leftSymbol) != Character.toLowerCase(rightSymbol)) {
                 return false;
-            } else {
-                left++;
-                right--;
             }
+            l++;
+            r--;
         }
 
         return true;
     }
 }
-
 ```
 
 ### Time
@@ -47,5 +37,3 @@ O(1) -- независимо от длины строки мы храним то
 ### Explication
 Идея проста -- ставим два указателя на начало и конец. В цикле находим валидный 
 символ для начала и конца и сравниваем их.
-
-Решение написано не очень красиво -- в retry чтобы написать лучше.
