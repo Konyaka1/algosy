@@ -31,53 +31,52 @@ public class Solution {
 Iterator based solution
 ```java
 public class Solution {
-    
     public ArrayList<Integer> intersect(final List<Integer> A, final List<Integer> B) {
         if (A.isEmpty() || B.isEmpty()) {
             return new ArrayList<>();
         }
 
-        ArrayList<Integer> result = new ArrayList<>();
-
         Iterator<Integer> first = A.iterator();
         Iterator<Integer> second = B.iterator();
 
-        int firstNumber = first.next();
-        int secondNumber = second.next();
-        while (first.hasNext() && second.hasNext()) {
-            if (firstNumber > secondNumber) {
-                secondNumber = second.next();
-            } else if (firstNumber < secondNumber) {
-                firstNumber = first.next();
-            } else {
-                result.add(firstNumber);
-                firstNumber = first.next();
-                secondNumber = second.next();
-            }
-        }
-    
-        while (first.hasNext() && firstNumber <= secondNumber) {
-            if (firstNumber == secondNumber) {
-                result.add(firstNumber);
-                return result;
-            }
-            firstNumber = first.next();
-        }
-    
-        while (second.hasNext() && secondNumber <= firstNumber) {
-            if (firstNumber == secondNumber) {
-                result.add(firstNumber);
-                return result;
-            }
-            secondNumber = second.next();
-        }
-        
-        if (firstNumber == secondNumber) {
-            result.add(firstNumber);
-        }
-        
+        ArrayList<Integer> res = new ArrayList<>();
 
-        return result;
+
+        int fn = first.next();
+        int sn = second.next();
+
+        while (first.hasNext() && second.hasNext()) {
+            if (fn < sn) {
+                fn = first.next();
+            } else if (fn > sn) {
+                sn = second.next();
+            } else {
+                res.add(fn);
+                fn = first.next();
+                sn = second.next();
+            }
+        }
+
+        // one of the list is empty, let's move
+        // them while they are less than other number
+
+        // if first is not pointing to end, means second is pointing to end
+        // so second number is the last
+        // if first number is more than second we quit
+        // if fn == sn we don't move
+        while (first.hasNext() && fn < sn) {
+            fn = first.next();
+        }
+
+        while (second.hasNext() && sn < fn) {
+            sn = second.next();
+        }
+
+        if (fn == sn) {
+            res.add(fn);
+        }
+
+        return res;
     }
 }
 ```
@@ -93,6 +92,5 @@ O(K) -- память зависит от кол-ва пересеченных э
 на последнем элементе, и мы не проверяем последний элемент в цикле. 
 Выйдя из основного цикла, мы знаем, что в результирующем массиве не хватает последнего элемента.
 Для этого мы двигаемся по первому массиву пока можем. Аналогично делаем со вторым массивом.
-Если в процессе движения по листам нашли последнее совпадение --> добавляем его в ответ и возвращаем результат.
-Если мы не нашли совпадений в процессе движения до последних элементов, то просто сравниваем последние элементы
-и возвращаем результат
+Идем по листам пока там есть значения и пока значение меньше другого. Подвинув все листы 
+делаем последнюю проверку на равенство и возвращаем ответ
