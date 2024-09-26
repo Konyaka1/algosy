@@ -7,5 +7,4 @@
 | 460. LFU Cache                                                                | 11.09.2024 |
 | 535. Encode and Decode TinyURL                                                | 11.09.2024 |
 | 745. Prefix and Suffix Search                                                 | 11.09.2024 |
-| 2657. Find the Prefix Common Array of Two Arrays [BIT manipulations solution] | 13.09.2024 |
 
