@@ -27,23 +27,23 @@ Sliding window solution
 class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {
         int l = 0;
-        int r = 0;
+        int r = -1;
 
-        int max = 0;
-        while (l < nums.length) {
-            while (r + 1 < nums.length && nums[r + 1] == nums[r]) {
+        int maxLength = 0;
+
+        while (r + 1 < nums.length) {
+            while (r + 1 < nums.length && nums[l] == nums[r + 1]) {
                 r = r + 1;
             }
 
             if (nums[r] == 1) {
-                max = Math.max(r - l + 1, max);
+                maxLength = Math.max(maxLength, r - l + 1);
             }
 
             l = r + 1;
-            r = r + 1;
         }
 
-        return max;
+        return maxLength;
     }
 }
 ```
