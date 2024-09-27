@@ -2,54 +2,49 @@
 ```java
 class MinStack {
 
-    final LinkedList<Integer> stack = new LinkedList<>();
-    final LinkedList<Integer> dequeue = new LinkedList<>();
+    class Entry {
+        int val;
+        int min;
+        Entry prev = null;
+    }
+
+    Entry head = null;
 
     public MinStack() {
 
     }
 
     public void push(int val) {
-        this.stack.offerLast(val);
-        int min = this.getMin();
-        if (val <= min) {
-            this.dequeue.offerFirst(val);
-        } else {
-            this.dequeue.offerLast(val);
-        }
+        Entry entry = new Entry();
+        entry.val = val;
+        entry.min = Math.min(val, this.getMin());
+        entry.prev = head;
+        head = entry;
     }
 
     public void pop() {
-        int top = this.stack.pollLast();
-        int min = this.getMin();
-        if (top == min) {
-            this.dequeue.pollFirst();
-        } else {
-            this.dequeue.pollLast();
-        }
+        head = head.prev;
     }
 
     public int top() {
-        return this.stack.peekLast();
+        return head.val;
     }
 
     public int getMin() {
-        if (this.dequeue.size() == 0) {
+        if (head == null) {
             return Integer.MAX_VALUE;
         }
-        return this.dequeue.peekFirst();
+        return head.min;
     }
 }
 ```
-
 ### Time
 O(1) -- все операции O(1), память для операций O(1)
 ### Memory
 O(N) -- память всей структуры данных занимает столько же, сколько элементов
 ### Explication
-Создаем два списка -- один оригинальный стак, который и выполняет функцию очереди, и второй
-список, который хранит первый элемент как минимальный.
-Идея такова: если добавляется новый элемент, в стак он идет как обычно, а во второй список с проверкой:
-Если новый элемент меньше минимума, то новый элемент становится вначало второго списка, иначе -- в конец.
-Аналогичная ситуация с доставанием элемента -- если из стака достали минимальный элемент, то из списка убираем начало, 
-иначе из списка убираем конец. Таким образом второй список всегда хранит минимальный элемент как первый.
+Храним указатель на вершину стека. В качестве entry мы храним 
+текущее значение и максимум всего стека и ссылку на предыдущее значение.
+При добавлении элемента мы обновляем голову (ссылку на `head`) и обновляем максимум.
+При операции `peek` просто возвращаем максимум из головы.
+При удалении говорим что голова это предыдущий элемент. 
