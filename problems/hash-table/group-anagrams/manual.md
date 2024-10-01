@@ -1,4 +1,5 @@
 ### Solution
+Фиксированный алфавит
 ```java
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
@@ -31,9 +32,33 @@ class Solution {
     }
 }
 ```
+Любой алфавит
+```java
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> groups = new HashMap<>();
 
+        for (String str : strs) {
+            char[] array = str.toCharArray();
+            Arrays.sort(array);
+            String key = new String(array);
+
+            List<String> group = groups.get(key);
+            if (group == null) {
+                group = new LinkedList<>();
+                groups.put(key, group);
+            }
+
+            group.add(str);
+        }
+
+        return groups.values().stream().toList();
+    }
+}
+```
 ### Time
 O(N*K), N --> length of array, K --> length of longest string
+O(N * K * log K), N --> length of array, K --> length of longest string
 ### Memory
 O(N*K), N --> length of array, K --> length of longest string
 ### Explication
