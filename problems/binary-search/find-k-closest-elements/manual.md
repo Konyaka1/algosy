@@ -1,12 +1,15 @@
-### Solution
+### Solution 1
 Bin search solution
 ```java
 class Solution {
-    public void twoSum() {
-
-    }
+    // solution goes here
 }
 ```
+### Time
+O(1) -- потому что
+### Memory
+O(1) -- потому что
+### Solution 2
 Regular linear solution
 ```java
 class Solution {
@@ -36,8 +39,8 @@ class Solution {
 }
 ```
 ### Time
-O(1) -- потому что 
+O(N - K) --  делаем n - k сравнений, пока размер окна не будет равен размеру необходимому
 ### Memory
-O(1) -- потому что
+O(K) -- k размер ответа, а вообще память доп не нужна
 ### Explication
 Потому что
