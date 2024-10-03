@@ -28,6 +28,51 @@ class Solution {
     }
 }
 ```
+Еще одна идея -- поиск строки и колонки
+```java
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int row = this.binSearchRow(matrix, target);
+        int column = this.binSearchColumn(matrix, target, row);
+
+        return matrix[row][column] == target;
+    }
+
+    private int binSearchRow(int[][] matrix, int target) {
+        int l = 0;
+        int r = matrix.length;
+
+        while (r - l > 1) {
+            int m = (r + l) / 2;
+
+            if (matrix[m][0] <= target) {
+                l = m;
+            } else {
+                r = m;
+            }
+        }
+
+        return l;
+    }
+
+    private int binSearchColumn(int[][] matrix, int target, int row) {
+        int l = 0;
+        int r = matrix[row].length;
+
+        while (r - l > 1) {
+            int m = (r + l) / 2;
+
+            if (matrix[row][m] <= target) {
+                l = m;
+            } else {
+                r = m;
+            }
+        }
+
+        return l;
+    }
+}
+```
 ### Time
 O(log N * M) -- каждый раз мы делим на два, и кол-во операций уменьшается в двое
 ### Memory
