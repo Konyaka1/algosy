@@ -43,7 +43,53 @@ public class Solution {
     }
 }
 ```
+One more solution
+```java
+public class Solution {
+    
+    public boolean isOneEditDistance(String s, String t) {
+        if (s.length() > t.length()) {
+            return this.isOneEditDistance(t, s);
+        }
 
+        if (t.length() - s.length() > 1) {
+            return false;
+        }
+        
+        int si = 0;
+        int ti = 0;
+
+        while (si < s.length() && s.charAt(si) == t.charAt(ti)) {
+            si++;
+            ti++;
+        }
+
+        if (t.length() == s.length()) {
+            if (si == s.length()) {
+                return false;
+            }
+            return this.isSameStrings(s, t, si + 1, ti + 1);
+        } else {
+            if (si == s.length()) {
+                return true;
+            }
+            return this.isSameStrings(s, t, si, ti + 1);
+        }
+    }
+
+    private boolean isSameStrings(String s, String t, int si, int ti) {
+        while (si < s.length()) {
+            if (s.charAt(si) != t.charAt(ti)) {
+                return false;
+            }
+            si++;
+            ti++;
+        }
+
+        return true;
+    }
+}
+```
 ### Time
 O(N) -- потому что проходим по всей строке
 ### Memory
