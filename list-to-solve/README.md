@@ -7,5 +7,4 @@
 | 460. LFU Cache                                                                    | 11.09.2024 |
 | 535. Encode and Decode TinyURL                                                    | 11.09.2024 |
 | 745. Prefix and Suffix Search                                                     | 11.09.2024 |
-| 142. Linked List Cycle II                                                         | 06.10.2024 |
 
