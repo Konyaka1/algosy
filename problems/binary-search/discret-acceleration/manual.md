@@ -1,3 +1,4 @@
+[Link](https://codeforces.com/problemset/problem/1408/C?locale=ru)
 ### Solution - iterative
 ```java
 import java.util.Scanner;
