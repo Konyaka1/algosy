@@ -1,12 +1,15 @@
 ### Solution
+
 ```java
+import java.util.function.IntPredicate;
+
 class Solution {
     public int search(int[] nums, int target) {
-        Comparison rotation = (x) -> x >= nums[0];
+        IntPredicate rotation = (x) -> x >= nums[0];
 
         int lastRotated = this.binSearch(nums, rotation, 0, nums.length);
 
-        Comparison findTarget = (x) -> x <= target;
+        IntPredicate findTarget = (x) -> x <= target;
 
         int l;
         if (target < nums[0]) {
@@ -20,11 +23,7 @@ class Solution {
         return nums[l] == target ? l : -1;
     }
 
-    interface Comparison {
-        boolean test(int x);
-    }
-
-    private int binSearch(int[] nums, Comparison test, int l, int r) {
+    private int binSearch(int[] nums, IntPredicate test, int l, int r) {
         while (r - l > 1) {
             int m = (r + l) / 2;
             if (test.test(nums[m])) {
