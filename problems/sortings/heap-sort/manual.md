@@ -1,4 +1,5 @@
 ### Solution
+Recursive
 ```java
 class Solution {
     public int[] sortArray(int[] nums) {
@@ -88,6 +89,108 @@ class Solution {
             int tmp = heap[l];
             heap[l] = heap[r];
             heap[r] = tmp;
+        }
+    }
+}
+```
+Iterative
+```java
+class Solution {
+    public int[] sortArray(int[] nums) {
+        MyHeap heap = new MyHeap(nums);
+
+        for (int i = 0; i < nums.length; i++) {
+            int max = heap.pop();
+            nums[nums.length - 1 - i] = max;
+        }
+
+        return nums;
+    }
+
+    class MyHeap {
+
+        private int[] heap;
+        private int size;
+
+        public MyHeap(int[] arr) {
+            this.heap = arr;
+            this.size = arr.length;
+            for (int i = size / 2; i >= 0; i--) {
+                siftDown(i);
+            }
+        }
+
+        public boolean isEmpty() {
+            return this.size == 0;
+        }
+
+        public int peek() {
+            return heap[0];
+        }
+
+        public void push(int number) {
+            this.heap[size] = number;
+
+            this.siftUp();
+
+            this.size++;
+        }
+
+        public int pop() {
+            int top = this.peek();
+            int last = this.heap[size - 1];
+            this.heap[0] = last;
+
+            this.siftDown(0);
+
+            this.size--;
+
+            return top;
+        }
+
+        private void siftUp() {
+            int last = size - 1;
+
+            while (last > 0) {
+                int parent = (last - 1) / 2;
+
+                if (heap[parent] >= heap[last]) {
+                    return;
+                }
+
+                swap(last, parent);
+
+                last = parent;
+            }
+        }
+
+        private void siftDown(int top) {
+            int left = top * 2 + 1;
+            int right = top * 2 + 2;
+
+            while (left < size) {
+                int maxIndex = left;
+                if (right < size && heap[right] > heap[left]) {
+                    maxIndex = right;
+                }
+
+                if (heap[top] >= heap[maxIndex]) {
+                    return;
+                }
+
+                swap(top, maxIndex);
+
+                top = maxIndex;
+                left = top * 2 + 1;
+                right = top * 2 + 2;
+            }
+        }
+
+        private void swap(int l, int r) {
+            int tmp = heap[l];
+            heap[l] = heap[r];
+            heap[r] = tmp;
+
         }
     }
 }
