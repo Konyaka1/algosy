@@ -1,4 +1,20 @@
 ### Solution
+```go
+func twoSum(nums []int, target int) []int {
+    valID := make(map[int]int)
+    
+    for id, val := range nums {
+        if firstID, ok := valID[val]; ok {
+            return []int{firstID, id}
+        } else {
+            requiredNum := target - val
+            valID[requiredNum] = id
+        }
+    }
+    
+    return []int{-1, -1}
+}
+```
 ```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {

@@ -1,4 +1,31 @@
 ### Solution
+```go
+func isValidSudoku(board [][]byte) bool {
+    rows := [9][9]bool{}
+    columns := [9][9]bool{}
+    squares := [9][9]bool{}
+    
+    for i := range 9 {
+        for j := range 9 {
+            if board[i][j] == '.' {
+                continue
+            }
+            
+            num := board[i][j] - '1'
+            sqID := (i / 3) * 3 + (j / 3)
+            if rows[i][num] || columns[j][num] || squares[sqID][num] {
+                return false
+            }
+            
+            rows[i][num] = true
+            columns[j][num] = true
+            squares[sqID][num] = true
+        }
+    }
+    
+    return true
+}
+```
 ```java
 class Solution {
     public boolean isValidSudoku(char[][] board) {
@@ -107,3 +134,5 @@ O(N) -- потому что храним каждый уникальный эл�
 ### Note
 Сущесвует спобос проще, чтобы достать индекс квадарата
 ``int blockIdx = (i / 3) * 3 + (j / 3);``
+### Note
+в мапу можно класть такой тип `[2]int` и он будет comparable и спокойно можно использовать как ключ

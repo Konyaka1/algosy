@@ -1,2 +1,2 @@
 ## Fails
-FIRST TRY. Time taken: ~27min
+Очень много ошибок на go
