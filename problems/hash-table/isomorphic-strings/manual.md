@@ -1,5 +1,26 @@
 ### Solution
+```go
+func isIsomorphic(s string, t string) bool {
+	mapT := make(map[byte]byte)
+	mapS := make(map[byte]byte)
 
+	for i := range len(s) {
+		if val, ok := mapT[s[i]]; ok && val != t[i] {
+			return false
+		} else {
+			mapT[s[i]] = t[i]
+		}
+
+		if val, ok := mapS[t[i]]; ok && val != s[i] {
+			return false
+		} else {
+			mapS[t[i]] = s[i]
+		}
+	}
+
+	return true
+}
+```
 Первое решение универсальное для любых символов.
 ```java
 class Solution {
