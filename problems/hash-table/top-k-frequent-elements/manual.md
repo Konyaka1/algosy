@@ -1,4 +1,30 @@
 ### Solution
+```go
+func topKFrequent(nums []int, k int) []int {
+    freq := make(map[int]int)
+    
+    for _, num := range nums {
+        freq[num]++
+    }
+    
+    countFreq := make([][]int, len(nums) + 1)
+    
+    for k, v := range freq {
+        countFreq[v] = append(countFreq[v], k)
+    }
+    
+    res := make([]int, 0, k)
+    
+    for i := len(countFreq) - 1; i > 0 && len(res) < k; i-- {
+        frequent := countFreq[i]
+        
+        res = append(res, frequent...)
+    }
+    
+    return res
+}
+```
+
 Time: 20:31
 ```java
 class Solution {

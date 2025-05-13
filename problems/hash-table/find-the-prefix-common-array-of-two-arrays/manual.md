@@ -1,4 +1,50 @@
 ### Solution
+```go
+// Сначала просто сет обычный
+func findThePrefixCommonArray(A []int, B []int) []int {
+    setA := make(map[int]struct{})
+    setB := make(map[int]struct{})
+    
+    res := make([]int, len(A) + 1, len(A) + 1)
+    for i := range len(A) {
+        if A[i] == B[i] {
+            res[i + 1] = res[i] + 1
+            continue
+        }
+        addition := 0
+        if _, ok := setA[B[i]]; ok {
+            addition += 1
+        }
+        if _, ok := setB[A[i]]; ok {
+            addition += 1
+        }
+        res[i + 1] = res[i] + addition
+        
+        setA[A[i]] = struct{} {}
+        setB[B[i]] = struct{} {}
+    }
+    
+    return res[1:]
+}
+```
+```go
+// теперь битовые операции
+func findThePrefixCommonArray(A []int, B []int) []int {
+    var setA, setB uint64
+    
+    res := make([]int, len(A), len(A))
+    
+    for i := range len(A) {
+        setA = setA | (1 << A[i])
+        setB = setB | (1 << B[i])
+        
+        res[i] = bits.OnesCount64(setA & setB)
+    }
+    
+    return res
+}
+```
+
 ```java
 class Solution {
     public int[] findThePrefixCommonArray(int[] A, int[] B) {

@@ -1,4 +1,33 @@
 ## Fails
+```go
+func findThePrefixCommonArray(A []int, B []int) []int {
+    setA := make(map[int]struct{})
+    setB := make(map[int]struct{})
+    
+    res := make([]int, len(A) + 1, len(A) + 1)
+    for i := range len(A) {
+        if A[i] == B[i] {
+            res[i] = res[i - 1] + 1 // здесь out of bounds
+            continue
+        }
+        addition := 0
+        if _, ok := setA[B[i]] { // тут забыл ; ok
+            addition += 1
+        }
+        if _, ok := setB[A[i]] { // и тут тоже
+            addition += 1
+        }
+        res[i] = res[i - 1] + addition // и // здесь out of bounds
+        
+        setA[A[i]] = struct{} {}
+        setB[B[i]] = struct{} {}
+    }
+    
+    return res
+}
+```
+
+
 #### 1st error
 [SYNTAX] **C** ??? я это result назвал емае
 ```java

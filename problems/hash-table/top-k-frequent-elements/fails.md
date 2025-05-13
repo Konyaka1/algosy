@@ -1,5 +1,36 @@
 ## Fails
 #### 1st error
+Забыл что слайс создается из двух или трех параметров. Также решение не потимальное, нужна не мапа
+для countFreq, а массив массивов.
+```go
+func topKFrequent(nums []int, k int) []int {
+    freq := make(map[int]int)
+    
+    for _, num := range nums {
+        freq[num]++
+    }
+    
+    countFreq := make(map[int][]int)
+    
+    for k, v := range freq {
+        countFreq[v] = append(countFreq[v], k)
+    }
+    
+    res := make([]int) // HERE
+    
+    for i := len(nums); i > 0 && len(res) < k; i-- {
+        frequent := countFreq[i]
+        
+        res = append(res, frequent...)
+    }
+    
+    return res
+}
+
+```
+
+
+#### 1st error
 [SYNTAX] Map is not iterable itself. We need to call **entrySet()**
 ```java
 class Solution {
